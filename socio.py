@@ -12,7 +12,7 @@ class Socio:
     
     
     def setNombre(self, nombre):
-        if type(nombre) != str or nombre.isdigit() == True:
+        if type(nombre) != str or nombre.isdigit():
             print("Ingrese una cadena de texto por favor")
             exit()
         self.__nombre = nombre
@@ -22,7 +22,7 @@ class Socio:
         return self.__nombre
 
     def setDni(self, dni):
-        if type(dni) != str or dni.isdigit() == False:
+        if type(dni) != str or not dni.isdigit():
             print("Ingrese un valor numerico por favor")
             exit()
         self.__dni = dni
@@ -31,7 +31,7 @@ class Socio:
         return self.__dni
 
     def setEmail(self, email):
-        if type(email) != str or "@" in email == False:
+        if type(email) != str or not "@" in email:
             print("Ingrese un formato de email valido por favor")
             exit()
         self.__email = email
@@ -40,7 +40,7 @@ class Socio:
         return self.__email
     
     def setTelefono(self, telefono):
-        if type(telefono) != str or telefono.isdigit() == False:
+        if type(telefono) != str or not telefono.isdigit():
             print("Ingrese un numero de telefono valido por favor")
             exit()
         self.__telefono = telefono
@@ -49,7 +49,7 @@ class Socio:
         return self.__telefono
     
     def setFechaNacimiento(self, fecha_nacimiento):
-        if type(fecha_nacimiento) != str or "/" in fecha_nacimiento == False:
+        if type(fecha_nacimiento) != str or not "/" in fecha_nacimiento:
             print("Ingrese una fecha de nacimiento valida por favor")
             exit()
         self.__fecha_nacimiento = fecha_nacimiento
@@ -58,7 +58,7 @@ class Socio:
         return self.__fecha_nacimiento
     
     def setDomicilio(self, domicilio):
-        if type(domicilio) != str :
+        if type(domicilio) != str:
             print("Ingrese un domicilio valido por favor")
             exit()
         self.__domicilio = domicilio
@@ -67,7 +67,7 @@ class Socio:
         return self.__domicilio
     
     def setFechaInscripcion(self, fecha_inscripcion):
-        if type(fecha_inscripcion) != str or "/" in fecha_inscripcion == False:
+        if type(fecha_inscripcion) != str or not "/" in fecha_inscripcion:
             print("Ingrese una fecha de inscripcion valida por favor")
             exit()
         self.__fecha_inscripcion = fecha_inscripcion
