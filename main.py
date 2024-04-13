@@ -1,7 +1,7 @@
 from Libro import Libro
 from socio import Socio
 from datetime import datetime
-from menu import seleccionar_operacion
+from menu import crear_libro, crear_socio, seleccionar_operacion
 def consultar_disponibilidad_libro(libro: Libro) :
   if libro.get_estado() :
     print('El libro esta disponible')
@@ -26,40 +26,22 @@ def main() :
 
   match accion :
     case 1 :
-      claves = ['nombre','genero','autor', 'codigo','es para adultos']
-      valores = []
-      print('Ingrese los datos del libro a cargar')
-      for clave in claves :
-        if clave == 'es para adultos' :
-          print('este libro es para mayores de 18? (si/no)')
-          adultos = input()
-          if adultos.lower() == 'si' :
-            valores.append(True)
-          else : 
-            valores.append(False)
-        else :
-          valores.append(input(f'{clave}'))
-      libros.append(Libro(valores[0], True, valores[1], valores[2], valores[3], valores[4]))
+        libros.append(crear_libro())
     case 2 :
-      claves = ['nombre','dni','email', 'telefono','fecha de nacimiento', 'domicilio', 'fecha de inscripcion']
-      valores = []
-      print('Ingrese los datos del libro a cargar')
-      for clave in claves :
-        valores.append(input(f'{clave}: '))
-      socios.append(Socio(valores[0], valores[1], valores[2], valores[3], valores[4], valores[5], valores[6], True))
+        socios.append(crear_socio())
     case 3 :
       print('Ingrese el numero de documento del usuario')
       dni = input('')
       for socio in socios :
-        if dni == socio.getDni():
+        if dni == socio.dni:
           print('Ingrese el dato que quiere modificar:''\n1 - modificar email'
                 '\n2 - modificar telefono''\n3 - modificar domicilio''\n4 - modificar estado')
           operacion = seleccionar_operacion(4)
           match operacion:
-            case 1 : socio.setEmail(input("Ingrese el email nuevo"))
-            case 2 : socio.setTelefono(input("Ingrese el telefono nuevo"))
-            case 3 : socio.setDomicilio(input("Ingrese el domicilio nuevo"))
-            case 4 : socio.setEstado(not socio.getEstado())
+            case 1 : socio.email = input("Ingrese el email nuevo")
+            case 2 : socio.telefono = input("Ingrese el telefono nuevo")
+            case 3 : socio.domicilio = input("Ingrese el domicilio nuevo")
+            case 4 : socio.estado = input("Ingrese el nuevo estado nuevo")
     case 4 :
       print('Ingrese el codigo del libro')
       codigo = input('')
@@ -73,8 +55,8 @@ def main() :
       socio = None
       libro_a_retirar = ''
       for i in range(len(socios)) :
-        print(socios[i].getDni())
-        if socios[i].getDni() == dni :
+        print(socios[i].dni)
+        if socios[i].dni == dni :
           socio = socios[i]           
       if socio == None :
         print('este usuario no existe')
@@ -84,9 +66,9 @@ def main() :
         print(libro)
       nombre_libro = input('Ingrese el nombre del libro a retirar')
       for i in range(len(libros)) :
-        if nombre_libro == libros[i].get_nombre() :
+        if nombre_libro == libros[i].nombre:
           libro_a_retirar = libros[i]
-      if libro_a_retirar.get_adulto() :
+      if libro_a_retirar.esParaAdultos() :
         if socio.calcularMayoriaEdad() :
           print('Puedes retirar el libro')
         else :
