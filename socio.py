@@ -1,14 +1,14 @@
 from datetime import datetime
 class Socio:
-    def __init__ (self,nombre, dni, email, telefono, fecha_nacimiento: datetime, domicilio, fecha_inscripcion: datetime, estado : bool):
+    def __init__ (self,nombre, dni, email, telefono, fecha_nacimiento, domicilio, fecha_inscripcion, estado):
             self.__nombre=nombre
             self.__dni=dni
             self.__email  = email
             self.__telefono = telefono
-            self.__fecha_nacimiento = fecha_nacimiento
+            self.__fecha_nacimiento: datetime = fecha_nacimiento
             self.__domicilio = domicilio
-            self.__fecha_inscripcion = fecha_inscripcion
-            self.__estado = estado
+            self.__fecha_inscripcion: datetime = fecha_inscripcion
+            self.__estado: bool = estado
     
     
     def setNombre(self, nombre):
@@ -86,12 +86,9 @@ class Socio:
     
 
     def calcularMayoriaEdad(self):
-        nacimiento = self.__fecha_nacimiento.split("/")
-        fecha = str(datetime.now()).split(" ")[0].split("-")
-        dias_nacimiento = int(nacimiento[0]) + int(nacimiento[1])* 30 + int(nacimiento[2]) * 365
-        dias_fecha = int(fecha[2]) + int(fecha[1]) * 30 + int(fecha[0]) * 365
-        edad_my = round((dias_fecha - dias_nacimiento)/365,2)
-        return edad_my >= 18
+        FECHA_ACTUAL = datetime.now()
+        EDAD = (FECHA_ACTUAL - self.__fecha_nacimiento).days / 365.25 
+        return EDAD >= 18
 
 
     def __str__(self):
