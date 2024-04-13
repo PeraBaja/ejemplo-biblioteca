@@ -1,5 +1,6 @@
 from Libro import Libro
 from socio import Socio
+from datetime import datetime
 from menu import interactuar_menu, menu_modificar_usuario
 def consultar_disponibilidad_libro(libro: Libro) :
   if libro.get_estado() :
@@ -15,8 +16,8 @@ def check_verificacion_adultos(socio: Socio) :
 def main() :
   a = Libro('cuentos pepito',True,'a','los a', 1234515252,False)
   b = Libro('prohibido',True,'Adultos','Vatsyayana',100000000,True)
-  juan = Socio('Juan', '42637834','ada@gmail','421421','15/6/2000','lamadrid 133','15/6/2024', True )
-  nacho = Socio('Nacho', '44858900', 'nacho@gmail', '12414252', '25/5/2008','lamadrid 544', '15/6/2024', True)
+  juan = Socio('Juan', '42637834','ada@gmail','421421', datetime(2000, 6, 15),'lamadrid 133', datetime(2024, 6, 15), True)
+  nacho = Socio('Nacho', '44858900', 'nacho@gmail', '12414252', datetime(2008, 5, 25),'lamadrid 544', datetime(2024, 6, 15), True)
   libros = [a, b]
   socios = [juan, nacho]
   accion = interactuar_menu()

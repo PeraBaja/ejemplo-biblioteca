@@ -1,6 +1,6 @@
 from datetime import datetime
 class Socio:
-    def __init__ (self,nombre, dni, email, telefono, fecha_nacimiento, domicilio, fecha_inscripcion, estado : bool):
+    def __init__ (self,nombre, dni, email, telefono, fecha_nacimiento: datetime, domicilio, fecha_inscripcion: datetime, estado : bool):
             self.__nombre=nombre
             self.__dni=dni
             self.__email  = email
@@ -49,7 +49,7 @@ class Socio:
         return self.__telefono
     
     def setFechaNacimiento(self, fecha_nacimiento):
-        if type(fecha_nacimiento) != str or not "/" in fecha_nacimiento:
+        if type(fecha_nacimiento) != datetime:
             print("Ingrese una fecha de nacimiento valida por favor")
             exit()
         self.__fecha_nacimiento = fecha_nacimiento
@@ -67,7 +67,7 @@ class Socio:
         return self.__domicilio
     
     def setFechaInscripcion(self, fecha_inscripcion):
-        if type(fecha_inscripcion) != str or not "/" in fecha_inscripcion:
+        if type(fecha_inscripcion) != datetime:
             print("Ingrese una fecha de inscripcion valida por favor")
             exit()
         self.__fecha_inscripcion = fecha_inscripcion
