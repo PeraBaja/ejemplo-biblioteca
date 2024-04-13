@@ -1,7 +1,7 @@
 from Libro import Libro
 from socio import Socio
 from datetime import datetime
-from menu import interactuar_menu, menu_modificar_usuario
+from menu import seleccionar_operacion
 def consultar_disponibilidad_libro(libro: Libro) :
   if libro.get_estado() :
     print('El libro esta disponible')
@@ -20,7 +20,9 @@ def main() :
   nacho = Socio('Nacho', '44858900', 'nacho@gmail', '12414252', datetime(2008, 5, 25),'lamadrid 544', datetime(2024, 6, 15), True)
   libros = [a, b]
   socios = [juan, nacho]
-  accion = interactuar_menu()
+  print('BIENVENIDO\n''\n1 - cargar socio''\n2 - cargar libro'
+  '\n3 - modificar usuario''\n4 - modificar el estado de un libro''\n5 - retirar libro')
+  accion = seleccionar_operacion(5)
 
   match accion :
     case 1 :
@@ -50,8 +52,10 @@ def main() :
       dni = input('')
       for socio in socios :
         if dni == socio.getDni():
-          numero = menu_modificar_usuario()
-          match numero :
+          print('Ingrese el dato que quiere modificar:''\n1 - modificar email'
+                '\n2 - modificar telefono''\n3 - modificar domicilio''\n4 - modificar estado')
+          operacion = seleccionar_operacion(4)
+          match operacion:
             case 1 : socio.setEmail(input("Ingrese el email nuevo"))
             case 2 : socio.setTelefono(input("Ingrese el telefono nuevo"))
             case 3 : socio.setDomicilio(input("Ingrese el domicilio nuevo"))
