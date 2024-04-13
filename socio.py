@@ -29,9 +29,9 @@ class Socio:
             exit()
         self.__dni = dni
     @property
-    def mail(self):
+    def email(self):
         return self.__email
-    @mail.setter
+    @email.setter
     def mail(self, email):
         if type(email) != str or not "@" in email:
             print("Ingrese un formato de email valido por favor")
