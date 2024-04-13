@@ -91,9 +91,7 @@ class Socio:
         dias_nacimiento = int(nacimiento[0]) + int(nacimiento[1])* 30 + int(nacimiento[2]) * 365
         dias_fecha = int(fecha[2]) + int(fecha[1]) * 30 + int(fecha[0]) * 365
         edad_my = round((dias_fecha - dias_nacimiento)/365,2)
-        if edad_my >= 18:
-            return True
-        else: return False
+        return edad_my >= 18
 
 
     def __str__(self):
